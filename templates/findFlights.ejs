@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
+    <script src="../findFlightsValidation.js"></script>
 	<title>Find Flights</title>
 </head>
 
@@ -23,7 +24,7 @@
                 <strong>Flight Criteria</strong>
             </legend>
           
-			<label><strong>Destination: </strong><input type="text" name="destination"/></label><br><br>
+			<label><strong>Destination: </strong><input type="text" id="destination" name="destination"/></label><br><br>
             
             <strong>Date: </strong>
             <input id="month" type="number" name="month"  min="1" max="12">
@@ -34,9 +35,9 @@
             &nbsp; &nbsp;
 
             <label>Price Range: 
-                <input name="minPriceRange" type="text" placeholder="0" maxlength="5" size="1" required> &ndash;
+                <input id="minPriceRange" name="minPriceRange" type="number" placeholder="0" min="0"  required> &ndash;
             </label>
-                <input name="maxPriceRange" type="text" placeholder="5000" maxlength="5" size="1" required>           
+                <input id = "maxPriceRange" name="maxPriceRange" type="number" placeholder="5000" min="0" required>           
 		</fieldset>
 
         <fieldset>
