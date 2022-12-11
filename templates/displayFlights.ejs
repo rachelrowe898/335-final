@@ -1,0 +1,37 @@
+<!-- DO NOT MODIFY THIS FILE -->
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Display Flights</title>
+</head>
+
+<body>
+	<h1>Applicant's Data</h1>
+	<div>
+        <strong>Name: </strong><%- name %><br>
+		<strong>Email Address: </strong><%- email %><br>
+		<strong>Date: </strong><%- date %><br>
+		<strong>Destination: </strong><%- destination %><br>
+		<strong>Price: </strong><%- price %><br>
+
+        <%- formAction %>
+            <fieldset>            
+                <label><strong>Bookmark Flight No. </strong><input type="text" name="name"/></label>
+            </fieldset>
+            <input type="reset" value="Clear"/>
+            <input type="submit" id="bookmarkFlight" value="Bookmark"/>
+	    </form>
+
+		<h3>Flights Matching Given Criteria</h3>
+		<%- flightTable %>
+
+		<hr>
+		<strong> Request completed at <%- currentDate %></strong>
+        <hr>
+        <a href="/">HOME</a>    
+	</div>
+</body>
+
+</html>
