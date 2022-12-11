@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Find Flights</title>
+</head>
+
+<body>
+	<h1>Application</h1>
+	<%- formAction %>
+        <fieldset>
+            <legend>
+                <strong>Customer Information</strong>
+            </legend>
+            
+            <label>Name: <input type="text" name="name"/></label>
+            <label>Email Address: <input type="email" name="email"  placeholder="example@notreal.notreal"></label>
+        </fieldset>
+
+		<fieldset>  
+            <legend>
+                <strong>Flight Criteria</strong>
+            </legend>
+          
+			<label><strong>Destination: </strong><input type="text" name="destination"/></label><br><br>
+            
+            <strong>Date: </strong>
+            <input id="month" type="number" name="month"  min="1" max="12">
+            <label for="month"><em>Month</em></label>
+
+            <input id="day" type="number" name="day"  min="0" max="31">
+            <label for="day"><em>Day</em></label>
+            &nbsp; &nbsp;
+
+            <label>Price Range: 
+                <input name="minPriceRange" type="text" placeholder="0" maxlength="5" size="1" required> &ndash;
+            </label>
+                <input name="maxPriceRange" type="text" placeholder="5000" maxlength="5" size="1" required>           
+		</fieldset>
+
+        <fieldset>
+			<legend>Additional Information</legend>
+			<label><textarea rows="5" cols="80" name="additionalInformation"></textarea></label>
+		</fieldset>
+
+		<br>
+		<input type="reset" value="Clear"/>
+		<input type="submit" id="submitRequest" value="Submit Request"/>
+		<hr>
+		<a href="/">HOME</a>
+	</form>
+</body>
+</html>
