@@ -8,31 +8,32 @@
 </head>
 
 <body>
-	<h1>Application</h1>
+	<h1>Find Flights!</h1>
 	<form action="/findFlights" method="post">
         <fieldset>
             <legend>
                 <strong>Customer Information</strong>
             </legend>
             
-            <label>Name: <input type="text" name="name"></label>
+            <label>Name: <input type="text" name="name"></label>&nbsp; &nbsp;
             <label>Email Address: <input type="email" name="email"></label>
         </fieldset>
-
+        <br>
 		<fieldset>  
             <legend>
                 <strong>Flight Criteria</strong>
             </legend>
 
-            <strong>Trip: </strong>
+            <br>
+            <strong>Trip</strong><br>
             <label for="origin"><em>From</em></label>
-            <input type="text" id="origin" name="origin" required>
+            <input type="text" id="origin" name="origin" required>&nbsp; &nbsp;
 
             <label for="destination"><em>To</em></label>
             <input type="text" id="destination" name="destination" required>
-            &nbsp; &nbsp;
+            <br><br>
             
-            <strong>Date: </strong>
+            <strong>Date</strong><br>
             <label for="month"><em>Month</em></label>
             <select id="month" name="month">
                 <option value="January">January</option>
@@ -47,16 +48,16 @@
                 <option value="October">October</option>
                 <option value="November">November</option>
                 <option value="December">December</option>
-			</select>
+			</select>&nbsp; &nbsp;
 
             <label for="day"><em>Day</em></label>
-            <input id="day" type="number" name="day"  min="1" max="31" required>
+            <input id="day" type="number" name="day"  min="1" max="31" required>&nbsp; &nbsp;
 
             <label for="year"><em>Year</em></label>
             <input id="year" type="number" name="year" max="10000" required>
-            &nbsp; &nbsp;
+            <br><br>
 
-            <label>Number of Tickets: <input id="numTickets" name="numTickets" type="number" placeholder="1" min="1" max="8" required></label>
+            <label><strong>Number of Tickets: </strong><input id="numTickets" name="numTickets" type="number" placeholder="1" min="1" max="8" required></label>
 		</fieldset>
 
 		<br>
