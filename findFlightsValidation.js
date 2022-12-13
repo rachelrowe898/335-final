@@ -1,6 +1,7 @@
 window.onsubmit = validateForm;
 
 function validateForm() {
+    console.log("IN VALIDATION SCRIPT");
     let origin = document.getElementById("origin").value;
     let destination = document.getElementById("destination").value;
     let numTickets = document.getElementById("numTickets").value;
