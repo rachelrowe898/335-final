@@ -1,0 +1,9 @@
+.outerContainer {
+    background-color: silver;
+    border: groove 1rem brown;
+
+    height: 56rem;
+    width: 60rem; 
+    margin: 0;
+    padding: 1rem;
+}

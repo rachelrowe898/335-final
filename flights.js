@@ -106,6 +106,9 @@ app.set("view engine", "ejs");
 /* Initializes request.body with post information */ 
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.use("/styles", express.static(__dirname + "css"));
+
+
 /* Constructing routes */
 app.get("/", (request, response) => { 
     response.render("index");
