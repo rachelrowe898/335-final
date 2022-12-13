@@ -115,7 +115,9 @@ app.get('/findFlights', (req, resp) => {
     resp.render("findFlights");
 });
 
+
 app.post('/findFlights', (req, resp) => {
+
     const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 	let date = month + " " + day + ", " +year;
 	let currentDate = new Date();
@@ -123,13 +125,21 @@ app.post('/findFlights', (req, resp) => {
 	resp.render("displayFlights", { name, email, origin, destination, date, numTickets, currentDate});
 });
 
+// app.get('/displayFlights', (req, resp) => {
+    
+//     resp.render("displayFlights");
+// });
+
 app.get('/getBookmarkedFlights', (req, resp) => {
     resp.render("getBookmarkedFlights");
 });
-
 app.post('/getBookmarkedFlights', (req, resp) => {
     const {email} = req.body
-    resp.render("yourBookmarkedFlights", {email});
+});
+
+app.post('/yourBookmarkedFlights', (req, resp) => {
+    const {email} = req.body
+    resp.render("yourBookmarkedFlights");
 });
 
 app.listen(portNum);

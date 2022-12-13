@@ -17,17 +17,17 @@
 		<strong>Number of Tickets: </strong><%- numTickets %><br><br>
 
 
-		<form action="/displayFlights" method="get">
-        <!-- <%- formAction %> -->
+		<form action="/displayFlights" method="post">
             <fieldset>            
                 <label><strong>Bookmark Flight No. </strong><input type="text" name="name"/></label>
             </fieldset>
+
+			
             <input type="reset" value="Clear"/>
             <input type="submit" id="bookmarkFlight" value="Bookmark"/>
 	    </form>
 
 		<h3>Flights Matching Given Criteria</h3>
-		<%- flightTable %>
 
 		<hr>
 		<strong> Request completed at <%- currentDate %></strong>
