@@ -7,12 +7,27 @@ function validateForm() {
 
     let month = document.getElementById("month").value;
     let day = document.getElementById("day").value;
+    let year = document.getElementById("year").value;
 
     let daysInEachMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    let userDateStr = month + " " + day + ", " + year;
+    const userDate = new Date(userDateStr);
+    const currentDate = new Date();
+
     let invalidMessages = "";
 
-    if(day > daysInEachMonth[month-1]) {
-        invalidMessages += "Invalid date";
+    if((userDate.getFullYear() < currentDate.getFullYear()) 
+        && (userDate.getFullYear() > currentDate.getFullYear() + 1)) { //check if year is in the past or if it is not more than 1 year in the future
+        invalidMessages += "Invalid year";   
+    } 
+
+    if(userDate.getFullYear() == currentDate.getFullYear()) {
+        if(userDate.getMonth() < currentDate.getMonth()) { //if year is the same, check if month is in the past
+            invalidMessages += "Invalid month";
+        } else if((userDate.getMonth() == currentDate.getMonth()) 
+            && (Number(day) > daysInEachMonth[userDate.getMonth()])) { //if year and month same, check if day is invalid/in the past?
+            invalidMessages += "Invalid day";
+        }
     }
 
     if (invalidMessages !== "") {
@@ -22,7 +37,7 @@ function validateForm() {
         let valuesProvided = "Do you want to submit the following flight details?\n";
         valuesProvided += "Origin: " + origin + "\n";
         valuesProvided += "Destination: " + destination + "\n";
-        valuesProvided += "Date: " + month + "/" + day + "\n";
+        valuesProvided += "Date: " + userDateStr + "\n";
         valuesProvided += "Number of Tickets: " + numTickets + "\n";
 
         return window.confirm(valuesProvided);

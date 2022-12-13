@@ -34,13 +34,29 @@
             
             <strong>Date: </strong>
             <label for="month"><em>Month</em></label>
-            <input id="month" type="number" name="month"  min="1" max="12" required>
+            <select id="month" name="month">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+			</select>
 
             <label for="day"><em>Day</em></label>
             <input id="day" type="number" name="day"  min="1" max="31" required>
+
+            <label for="year"><em>Year</em></label>
+            <input id="year" type="number" name="year" max="10000" required>
             &nbsp; &nbsp;
 
-            <label>Number of Tickets: <input id="numTickets" name="numTickets" type="number" placeholder="1" min="1"  required></label>
+            <label>Number of Tickets: <input id="numTickets" name="numTickets" type="number" placeholder="1" min="1" max="8" required></label>
 		</fieldset>
 
         <fieldset>
