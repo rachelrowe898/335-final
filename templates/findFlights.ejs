@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
     <script src="../findFlightsValidation.js"></script>
 	<title>Find Flights</title>
 </head>
@@ -15,29 +15,32 @@
                 <strong>Customer Information</strong>
             </legend>
             
-            <label>Name: <input type="text" name="name"/></label>
-            <label>Email Address: <input type="email" name="email"  placeholder="example@notreal.notreal"></label>
+            <label>Name: <input type="text" name="name"></label>
+            <label>Email Address: <input type="email" name="email"></label>
         </fieldset>
 
 		<fieldset>  
             <legend>
                 <strong>Flight Criteria</strong>
             </legend>
-          
-			<label><strong>Destination: </strong><input type="text" id="destination" name="destination"/></label><br><br>
+
+            <strong>Trip: </strong>
+            <label for="origin"><em>From</em></label>
+            <input type="text" id="origin" name="origin" required>
+
+            <label for="destination"><em>To</em></label>
+            <input type="text" id="destination" name="destination" required>
+            &nbsp; &nbsp;
             
             <strong>Date: </strong>
-            <input id="month" type="number" name="month"  min="1" max="12">
             <label for="month"><em>Month</em></label>
+            <input id="month" type="number" name="month"  min="1" max="12" required>
 
-            <input id="day" type="number" name="day"  min="0" max="31">
             <label for="day"><em>Day</em></label>
+            <input id="day" type="number" name="day"  min="1" max="31" required>
             &nbsp; &nbsp;
 
-            <label>Price Range: 
-                <input id="minPriceRange" name="minPriceRange" type="number" placeholder="0" min="0"  required> &ndash;
-            </label>
-                <input id = "maxPriceRange" name="maxPriceRange" type="number" placeholder="5000" min="0" required>           
+            <label>Number of Tickets: <input id="numTickets" name="numTickets" type="number" placeholder="1" min="1"  required></label>
 		</fieldset>
 
         <fieldset>
@@ -46,8 +49,8 @@
 		</fieldset>
 
 		<br>
-		<input type="reset" value="Clear"/>
-		<input type="submit" id="submitRequest" value="Submit Request"/>
+		<input type="reset" value="Clear">
+		<input type="submit" id="submitRequest" value="Submit Request">
 		<hr>
 		<a href="/">HOME</a>
 	</form>
