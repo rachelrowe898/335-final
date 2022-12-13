@@ -113,24 +113,27 @@ app.get("/", (request, response) => {
     response.render("index");
 });
 app.get('/findFlights', (req, resp) => {
-    // const {formAction} = "<form action=\"/findFlights\" method=\"POST\">";
     resp.render("findFlights");
 });
-app.post('/findFlights', (req, resp) => {
+
+app.post('/displayFlights', (req, resp) => {
+
     const {name, email, origin, destination, month, numTickets} = req.body;
     resp.render("displayFlights", { name, email, origin, destination, month, numTickets});
 });
-// app.get('/displayFlights', (req, resp) => {
-    
-//     resp.render("displayFlights");
-// });
+
+
 app.get('/getBookmarkedFlights', (req, resp) => {
-    // const {formAction} = "<form action=\"getBookmarkedFlights\" method=\"POST\">";
-    resp.render("getBookmarkedFlights", {formAction});
+    resp.render("getBookmarkedFlights");
 });
+
 app.post('/getBookmarkedFlights', (req, resp) => {
     const {email} = req.body
-    resp.render("yourBookmarkedFlights", {email});
+});
+
+app.post('/yourBookmarkedFlights', (req, resp) => {
+    const {email} = req.body
+    resp.render("yourBookmarkedFlights");
 });
 app.listen(portNum);
 
