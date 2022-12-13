@@ -113,19 +113,19 @@ app.get("/", (request, response) => {
     response.render("index");
 });
 app.get('/findFlights', (req, resp) => {
-    const {formAction} = "<form action=\"/findFlights\" method=\"POST\">";
-    resp.render("findFlights", {formAction});
+    // const {formAction} = "<form action=\"/findFlights\" method=\"POST\">";
+    resp.render("findFlights");
 });
 app.post('/findFlights', (req, resp) => {
-    const {name, email, date, destination, price} = req.body;
-    resp.render("findFlights", { name, email, date, destination, price});
+    const {name, email, origin, destination, month, numTickets} = req.body;
+    resp.render("displayFlights", { name, email, origin, destination, month, numTickets});
 });
-app.get('/displayFlights', (req, resp) => {
+// app.get('/displayFlights', (req, resp) => {
     
-    resp.render("displayFlights");
-});
+//     resp.render("displayFlights");
+// });
 app.get('/getBookmarkedFlights', (req, resp) => {
-    const {formAction} = "<form action=\"getBookmarkedFlights\" method=\"POST\">";
+    // const {formAction} = "<form action=\"getBookmarkedFlights\" method=\"POST\">";
     resp.render("getBookmarkedFlights", {formAction});
 });
 app.post('/getBookmarkedFlights', (req, resp) => {

@@ -15,10 +15,9 @@
 		<strong>Destination: </strong><%- destination %><br>
 		<strong>Date: </strong><%- date %><br>
 		<strong>Number of Tickets: </strong><%- numTickets %><br><br>
-		<strong>Additional Information: </strong><%- additionalInformation %><br>
 
 
-		<form action="" method="post"></form>
+		<form action="/displayFlights" method="get">
         <!-- <%- formAction %> -->
             <fieldset>            
                 <label><strong>Bookmark Flight No. </strong><input type="text" name="name"/></label>
