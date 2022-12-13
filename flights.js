@@ -107,31 +107,31 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:false}));
 
 /* Constructing routes */
-
 app.get("/", (request, response) => { 
-    /* Generating the HTML */
     response.render("index");
 });
+
 app.get('/findFlights', (req, resp) => {
-    // const {formAction} = "<form action=\"/findFlights\" method=\"POST\">";
     resp.render("findFlights");
 });
+
 app.post('/findFlights', (req, resp) => {
-    const {name, email, origin, destination, month, numTickets} = req.body;
-    resp.render("displayFlights", { name, email, origin, destination, month, numTickets});
+    const {name, email, origin, destination, month, day, year, numTickets} = req.body;
+	let date = month + " " + day + ", " +year;
+	let currentDate = new Date();
+
+	resp.render("displayFlights", { name, email, origin, destination, date, numTickets, currentDate});
 });
-// app.get('/displayFlights', (req, resp) => {
-    
-//     resp.render("displayFlights");
-// });
+
 app.get('/getBookmarkedFlights', (req, resp) => {
-    // const {formAction} = "<form action=\"getBookmarkedFlights\" method=\"POST\">";
-    resp.render("getBookmarkedFlights", {formAction});
+    resp.render("getBookmarkedFlights");
 });
+
 app.post('/getBookmarkedFlights', (req, resp) => {
     const {email} = req.body
     resp.render("yourBookmarkedFlights", {email});
 });
+
 app.listen(portNum);
 
 /* End constructing routes */
