@@ -103,6 +103,9 @@ app.set("views", path.resolve(__dirname, "templates"));
 /* view/templating engine */
 app.set("view engine", "ejs");
 
+// location for pictures
+app.use(express.static('public'));
+
 /* Initializes request.body with post information */ 
 app.use(bodyParser.urlencoded({extended:false}));
 
