@@ -118,7 +118,6 @@ app.get('/findFlights', (req, resp) => {
     resp.render("findFlights");
 });
 
-
 app.post('/findFlights', (req, resp) => {
 
     const {name, email, origin, destination, month, day, year, numTickets} = req.body;
