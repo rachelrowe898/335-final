@@ -8,63 +8,68 @@
 </head>
 
 <body>
-	<h1>Find Flights!</h1>
-	<form action="/findFlights" method="post">
-        <fieldset>
-            <legend>
-                <strong>Customer Information</strong>
-            </legend>
-            
-            <label>Name: <input type="text" name="name"></label>&nbsp; &nbsp;
-            <label>Email Address: <input type="email" name="email"></label>
-        </fieldset>
-        <br>
-		<fieldset>  
-            <legend>
-                <strong>Flight Criteria</strong>
-            </legend>
-
-            <br>
-            <strong>Trip</strong><br>
-            <label for="origin"><em>From</em></label>
-            <input type="text" id="origin" name="origin" required>&nbsp; &nbsp;
-
-            <label for="destination"><em>To</em></label>
-            <input type="text" id="destination" name="destination" required>
-            <br><br>
-            
-            <strong>Date</strong><br>
-            <label for="month"><em>Month</em></label>
-            <select id="month" name="month">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-			</select>&nbsp; &nbsp;
-
-            <label for="day"><em>Day</em></label>
-            <input id="day" type="number" name="day"  min="1" max="31" required>&nbsp; &nbsp;
-
-            <label for="year"><em>Year</em></label>
-            <input id="year" type="number" name="year" max="10000" required>
-            <br><br>
-
-            <label><strong>Number of Tickets: </strong><input id="numTickets" name="numTickets" type="number" placeholder="1" min="1" max="8" required></label>
-		</fieldset>
-
-		<br>
-		<input type="reset" value="Clear">
-		<input type="submit" id="submitRequest" value="Submit Request">
-		<hr>
-		<a href="/">HOME</a>
-	</form>
+    <div style="background-color: lightcyan; border: groove 1rem skyblue; height: 56rem; width: 60rem; margin: 0; padding: 1rem; color:midnightblue;">
+        <h1 style="text-align:center; font-family: 'Brush Script MT'; font-size: 3rem;">Find Flights!</h1>
+        <div style="background-color: white; text-align: center; border: solid; border-color: black; width: 50rem; height: 25rem; padding-inline: 1rem; padding-top: 1rem; margin: 0 auto;">
+            <form action="/findFlights" method="post">
+                <fieldset>
+                    <legend>
+                        <strong>Customer Information</strong>
+                    </legend>
+                    
+                    <br>
+                    <label>Name: <input type="text" name="name"></label>&nbsp; &nbsp;
+                    <label>Email Address: <input type="email" name="email"></label>
+                </fieldset>
+                <br>
+                <fieldset>  
+                    <legend>
+                        <strong>Flight Criteria</strong>
+                    </legend>
+        
+                    <br>
+                    <strong>Trip</strong><br>
+                    <label for="origin"><em>From</em></label>
+                    <input type="text" id="origin" name="origin" required>&nbsp; &nbsp;
+        
+                    <label for="destination"><em>To</em></label>
+                    <input type="text" id="destination" name="destination" required>
+                    <br><br>
+                    
+                    <strong>Date</strong><br>
+                    <label for="month"><em>Month</em></label>
+                    <select id="month" name="month">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>&nbsp; &nbsp;
+        
+                    <label for="day"><em>Day</em></label>
+                    <input id="day" type="number" name="day"  min="1" max="31" required>&nbsp; &nbsp;
+        
+                    <label for="year"><em>Year</em></label>
+                    <input id="year" type="number" name="year" max="10000" required>
+                    <br><br>
+        
+                    <label><strong>Number of Tickets: </strong><input id="numTickets" name="numTickets" type="number" placeholder="1" min="1" max="8" required></label>
+                </fieldset>
+        
+                <br>
+                <input type="reset" value="Clear">
+                <input type="submit" id="submitRequest" value="Submit Request">
+                <hr>
+                <a href="/">HOME</a>
+            </form>        
+        </div>
+    </div>
 </body>
 </html>
