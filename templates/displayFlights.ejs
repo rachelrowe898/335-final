@@ -8,30 +8,32 @@
 </head>
 
 <body>
-	<h1><%- name %>'s Data</h1>
-	<div>
-		<strong>Email Address: </strong><%- email %><br>
-		<strong>Origin: </strong><%- origin %><br>
-		<strong>Destination: </strong><%- destination %><br>
-		<strong>Date: </strong><%- date %><br>
-		<strong>Number of Tickets: </strong><%- numTickets %><br><br>
-		<hr>
-
-		<form action="/displayFlights" method="post">
-            <fieldset>            
-                <label><strong>Bookmark Flight No. </strong><input type="text" name="name"/></label>
-            </fieldset>
-            <input type="reset" value="Clear"/>
-            <input type="submit" id="bookmarkFlight" value="Bookmark"/>
-	    </form>
-		<hr>
-
-		<h3>Flights Matching Given Criteria</h3>
-		
-		<hr>
-		<strong> Request completed at <%- currentDate %></strong>
-        <hr>
-        <a href="/">HOME</a>    
+    <div style="background-color: lightcyan; border: groove 1rem skyblue; height: 56rem; width: 60rem; margin: 0; padding: 1rem; color:midnightblue;">
+		<h1 style="text-align:center; font-family: 'Brush Script MT'; font-size: 3rem;"><%- name %>'s Flight Criteria</h1>
+        <div style="background-color: white; text-align: center; border: solid; border-color: black; width: 50rem; height: 25rem; padding-inline: 1rem; padding-top: 1rem; margin: 0 auto;">
+			<strong>Email Address: </strong><%- email %><br>
+			<strong>Origin: </strong><%- origin %><br>
+			<strong>Destination: </strong><%- destination %><br>
+			<strong>Date: </strong><%- date %><br>
+			<strong>Number of Tickets: </strong><%- numTickets %><br><br>
+			<hr>
+	
+			<form action="/displayFlights" method="post">
+				<fieldset>            
+					<label><strong>Bookmark Flight No. </strong><input type="text" name="name"/></label>
+				</fieldset>
+				<input type="reset" value="Clear"/>
+				<input type="submit" id="bookmarkFlight" value="Bookmark"/>
+			</form>
+			<hr>
+	
+			<h3>Flights Matching Given Criteria</h3>
+			
+			<hr>
+			<strong> Request completed at <%- currentDate %></strong>
+			<hr>
+			<a href="/">HOME</a>    	
+		</div>
 	</div>
 </body>
 

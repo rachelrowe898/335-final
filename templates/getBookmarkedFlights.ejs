@@ -8,17 +8,20 @@
 </head>
 
 <body>
-	<h1>Display Your Bookmarked Flights</h1>
-	<form action="/yourBookmarkedFlights" method="POST">
-        <fieldset>            
-            <label><strong>Email Address: </strong><input type="email" name="email"></label><br>		
-        </fieldset>
-        <br>
-        <input type="reset" value="Clear"/>
-        <input type="submit" id="Get Bookmarked Flights" value="Get Bookmarked Flights"/>
-        <hr>
-        <a href="/">HOME</a>
-</form>
+    <div style="background-color: lightcyan; border: groove 1rem skyblue; height: 56rem; width: 60rem; margin: 0; padding: 1rem; color:midnightblue;">
+        <h1 style="text-align:center; font-family: 'Brush Script MT'; font-size: 3rem;">Get Your Bookmarked Flights</h1>
+        <div style="background-color: white; text-align: center; border: solid; border-color: black; width: 50rem; height: 25rem; padding-inline: 1rem; padding-top: 1rem; margin: 0 auto;">
+            <form action="/yourBookmarkedFlights" method="POST">
+                <fieldset>            
+                    <label><strong>Email Address: </strong><input type="email" name="email"></label><br>		
+                </fieldset>
+                <br>
+                <input type="reset" value="Clear"/>
+                <input type="submit" id="Get Bookmarked Flights" value="Get Bookmarked Flights"/>
+                <hr>
+                <a href="/">HOME</a>
+            </form>    
+        </div>    
+    </div>
 </body>
-
 </html>
