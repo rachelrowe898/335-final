@@ -132,6 +132,12 @@ app.post('/findFlights', (req, resp) => {
 	resp.render("displayFlights", {name, email, origin, destination, date, numTickets, currentDate});
 });
 
+app.post('/displayFlights', (req, resp) => {
+	let currentDate = new Date();
+	// pass the bookmarked flights table here!
+	resp.render("displayNewBookmarkedFlights.ejs", {currentDate, displayFlightsTable})
+})
+
 // app.get('/displayFlights', (req, resp) => {
     
 //     resp.render("displayFlights");
