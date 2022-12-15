@@ -26,25 +26,27 @@ note: numAdults allows values 1-8, departureDate in format YYYY-MM-DD
 /* commented out bc we're broke and can't be affording extra calls :')
 const req = unirest("GET", "https://skyscanner44.p.rapidapi.com/search");
 
-req.query({
-	"adults": "1",
-	"origin": "MUC",
-	"destination": "BER",
-	"departureDate": "2022-10-11",
-	"currency": "EUR"
-});
+// use info from findFlights ro make API call and return response body
+function fetchAPIData(numTickets, origin, destination, departureDate) {
+	const currency = "USD";
+	req.query({
+		"adults": numTickets,
+		"origin": origin,
+		"destination": destination,
+		"departureDate": departureDate,
+		"currency": currency
+	});
+	req.headers({
+		"X-RapidAPI-Key": "83d5143addmshf8f6e06a5eebfc0p16813djsnee59aab7da18",
+		"X-RapidAPI-Host": "skyscanner44.p.rapidapi.com",
+		"useQueryString": true
+	});
+	req.end(function (res) {
+		if (res.error) throw new Error(res.error);
+		return res.body;
+	});
+}
 
-req.headers({
-	"X-RapidAPI-Key": "83d5143addmshf8f6e06a5eebfc0p16813djsnee59aab7da18",
-	"X-RapidAPI-Host": "skyscanner44.p.rapidapi.com",
-	"useQueryString": true
-});
-
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
-
-	console.log(res.body);
-});
 */
 
 /* Constructing routes */
@@ -122,9 +124,12 @@ app.post('/findFlights', (req, resp) => {
 
     const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 	let date = month + " " + day + ", " +year;
-	let currentDate = new Date();
+	let currentDate = new Date();;
 
-	resp.render("displayFlights", { name, email, origin, destination, date, numTickets, currentDate});
+	// send info to func that calls API and parses that response to make that flightTable
+	let responseBody = fetchAPIData(numTickets, origin, destination, departureDate);
+	let displayFlightsTable = makeTable(responseBody);
+	resp.render("displayFlights", {name, email, origin, destination, date, numTickets, currentDate});
 });
 
 // app.get('/displayFlights', (req, resp) => {
