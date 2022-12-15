@@ -46,8 +46,21 @@ function fetchAPIData(numTickets, origin, destination, departureDate) {
 		return res.body;
 	});
 }
-
 */
+
+function makeTable(response) {
+	bestFlights = response.buckets.best;
+	tableHTML = "<table border='1'>";
+	tableHTML += "<tr><th>Flight ID</th><th>From</th><th>To</th><th>Price</th></tr>";
+	let id = 1;
+	bestFlights.forEach(element => {
+		tableHTML += "<tr>";
+		tableHTML += `<td>${id++}</td>`;
+		tableHTML += `<td>${element.price.formatted}</td>`;
+		tableHTML += "</tr>";
+	});
+
+}
 
 /* Constructing routes */
 
