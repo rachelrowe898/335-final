@@ -16,4 +16,4 @@ We query the Skyscanner API with the origin, destination, date, and number of ti
 We deployed our app online with Cyclic.sh. The link to access our app is: https://cute-blue-bee-gear.cyclic.app/
 
 ## YouTube Demo Video
-Our YouTube demo of our app: {link}
+Our YouTube demo of our app: https://youtu.be/50E40Znyo7c
