@@ -1,7 +1,6 @@
 window.onsubmit = validateForm;
 
 function validateForm() {
-    console.log("IN VALIDATION SCRIPT");
     let origin = document.getElementById("origin").value;
     let destination = document.getElementById("destination").value;
     let numTickets = document.getElementById("numTickets").value;
@@ -16,18 +15,18 @@ function validateForm() {
     const currentDate = new Date();
 
     let invalidMessages = "";
-
     if((userDate.getFullYear() < currentDate.getFullYear()) 
-        && (userDate.getFullYear() > currentDate.getFullYear() + 1)) { //check if year is in the past or if it is not more than 1 year in the future
+        || (userDate.getFullYear() > currentDate.getFullYear() + 1)) { //check if year is in the past or if it is not more than 1 year in the future
         invalidMessages += "Invalid year";   
     } 
 
-    if(userDate.getFullYear() == currentDate.getFullYear()) {
+    if(userDate.getFullYear() >= currentDate.getFullYear()) {
         if(userDate.getMonth() < currentDate.getMonth()) { //if year is the same, check if month is in the past
             invalidMessages += "Invalid month";
-        } else if((userDate.getMonth() == currentDate.getMonth()) 
-            && (Number(day) > daysInEachMonth[userDate.getMonth()])) { //if year and month same, check if day is invalid/in the past?
-            invalidMessages += "Invalid day";
+        } else if((userDate.getMonth() == currentDate.getMonth())) {
+            if((userDate.getDate() > daysInEachMonth[userDate.getMonth()])  || (userDate.getDate() < currentDate.getDate())) {
+                invalidMessages += "Invalid day";
+            }
         }
     }
 
@@ -40,7 +39,6 @@ function validateForm() {
         valuesProvided += "Destination: " + destination + "\n";
         valuesProvided += "Date: " + userDateStr + "\n";
         valuesProvided += "Number of Tickets: " + numTickets + "\n";
-
         return window.confirm(valuesProvided);
     }
 }
