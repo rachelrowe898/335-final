@@ -7,6 +7,8 @@ const bodyParser = require("body-parser"); /* To handle post parameters */
 const fs = require("fs");
 require("dotenv").config({ path: path.resolve(__dirname, 'credentialsDontPost/.env') })  
 
+let apiJSON;
+
 const userName = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
 
@@ -44,7 +46,7 @@ async function lookupByEmail(client, databaseAndCollection, clientEmail) {
 let currentFlightsList = new Object();
 function makeTable(response) {
 	tableHTML = "<table border='1'>";
-	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Date</th></tr>";
+	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Departure Date</th><th>Arrival Date</th></tr>";
 
 	if (response){
 		bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
@@ -55,9 +57,10 @@ function makeTable(response) {
 			let idStr = "box" + idx;
 			currentFlightsList[idStr] = {id: element.id, price: element.price.formatted, origin: element.legs[0].origin.id, destination: element.legs[0].destination.id, date: element.legs[0].departure};
 			tableHTML += "<tr>";
-			tableHTML += `<td><input type="checkbox" id="${idStr}" value="${idx}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
+			tableHTML += `<td><input type="checkbox" id="flight${idx}" value="${id}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
 			tableHTML += `<td>${element.price.formatted}</td>`;
 			tableHTML += `<td>${element.legs[0].departure}</td>`;
+			tableHTML += `<td>${element.legs[0].arrival}</td>`;
 			tableHTML += "</tr>";
 			idx++;
 		});
@@ -177,7 +180,6 @@ app.post('/displayFlights', (req, resp) => {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	} // sleep before querying api again
 	
-	let apiJSON;
 	let idGlobal;
 	let apiCallCount = 0;
 	const maxApiCallCount = 4;
@@ -190,6 +192,17 @@ app.post('/displayFlights', (req, resp) => {
 		.then(res => res.json())
 		.then(json => { apiJSON = json })
 		.catch(err => console.error('error:' + err));
+
+
+		/* COMMENT THIS OUT */
+		const fs = require('fs');
+
+		let rawdata = fs.readFileSync('sampleResponse.json');
+		apiJSON = JSON.parse(rawdata);
+
+
+		/* until here */
+
 
 		if(apiCallCount > maxApiCallCount || apiJSON !== undefined) {
 			if (apiCallCount > maxApiCallCount) {
@@ -217,14 +230,22 @@ app.post('/displayNewBookmarkedFlights', (req, resp) => {
 	const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 
 
-	var array = []
-	var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
 
-	for (var i = 0; i < checkboxes.length; i++) {
+	let ids = []
 
-		/* push flight info returned by API based on ID given by value */
-		array.push(checkboxes[i].value)
+	if (req.body.flight0){
+		console.log("here");
+		console.log(req.body.flight0.value);
 	}
+
+	let checked = req.body;
+
+	// console.log(checked);
+	
+   	// checked.forEach(function (item) {
+    //    ids.push(item.id);
+   	// });
+
 
 	let currentDate = new Date();
 
@@ -234,8 +255,12 @@ app.post('/displayNewBookmarkedFlights', (req, resp) => {
         try{
             await client.connect();
 	
+
 		
-			array.forEach(async (flight) => {
+		
+			ids.forEach(async (flightID) => {
+
+				let flight = Object.keys(apiJSON.itineraries.buckets.items).find(flight => apiJSON.itineraries.buckets.items.id === flightID);
 				await insertFlight(client, databaseAndCollection, flight);
 			});
 
