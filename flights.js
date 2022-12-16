@@ -236,7 +236,7 @@ app.post('/displayFlights', (req, resp) => {
 */
 
 
-		response.render("displayFlights", res);
+		//response.render("displayFlights", res);
 
         // let table = "<style>table, th, td{ border: 1px double black;}</style>"
 
@@ -261,12 +261,12 @@ app.post('/displayFlights', (req, resp) => {
 
 
 
-    });
+    //});
 
 
 
 
-}
+//}
 app.get('/getBookmarkedFlights', (req, resp) => {
     resp.render("getBookmarkedFlights");
 });
@@ -326,9 +326,6 @@ app.post('/yourBookmarkedFlights', (req, resp) => {
 
 
     });
-
-
-
 
 });
 
