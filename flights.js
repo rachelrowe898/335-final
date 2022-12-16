@@ -7,6 +7,8 @@ const bodyParser = require("body-parser"); /* To handle post parameters */
 const fs = require("fs");
 require("dotenv").config({ path: path.resolve(__dirname, 'credentialsDontPost/.env') })  
 
+let apiJSON;
+
 const userName = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
 
@@ -14,6 +16,7 @@ const password = process.env.MONGO_DB_PASSWORD;
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { response } = require("express");
 
 
 const uri = `mongodb+srv://${userName}:${password}@cluster0.ytqxemr.mongodb.net/?retryWrites=true&w=majority`;
@@ -42,21 +45,26 @@ async function lookupByEmail(client, databaseAndCollection, clientEmail) {
 
 let currentFlightsList = new Object();
 function makeTable(response) {
-	bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
 	tableHTML = "<table border='1'>";
-	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Date</th></tr>";
-	let idx = 0;
-	bestFlights.forEach(element => {
-		// do fields we'll put in mongo, tbd
-		let idStr = "box" + idx;
-		currentFlightsList[idStr] = {id: element.id, price: element.price.formatted, origin: element.legs[0].origin.id, destination: element.legs[0].destination.id, date: element.legs[0].departure};
-		tableHTML += "<tr>";
-		tableHTML += `<td><input type="checkbox" id="${idStr}" value="${idx}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
-		tableHTML += `<td>${element.price.formatted}</td>`;
-		tableHTML += `<td>${element.legs[0].departure}</td>`;
-		tableHTML += "</tr>";
-		idx++;
-	});
+	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Departure Date</th><th>Arrival Date</th></tr>";
+
+	if (response){
+		bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
+		
+		let idx = 0;
+		bestFlights.forEach(element => {
+			// do fields we'll put in mongo, tbd
+			let idStr = "box" + idx;
+			currentFlightsList[idStr] = {id: element.id, price: element.price.formatted, origin: element.legs[0].origin.id, destination: element.legs[0].destination.id, date: element.legs[0].departure};
+			tableHTML += "<tr>";
+			tableHTML += `<td><input type="checkbox" id="flight${idx}" value="${id}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
+			tableHTML += `<td>${element.price.formatted}</td>`;
+			tableHTML += `<td>${element.legs[0].departure}</td>`;
+			tableHTML += `<td>${element.legs[0].arrival}</td>`;
+			tableHTML += "</tr>";
+			idx++;
+		});
+	}
 	tableHTML += "</table>";
 	return tableHTML;
 
@@ -65,25 +73,28 @@ function makeTable(response) {
 function makeBookmarksTable(bookmarkedFlights) {
 	tableHTML = "<table border='1'>";
 	tableHTML += "<tr><th>Price</th><th>Origin</th><th>Destination</th><th>Date</th></tr>";
-	if (bookmarkedFlights.length == 1) {
-		let flight = currentFlightsList["box0"];
-		tableHTML += "<tr>";
-		tableHTML += `<td>${flight.price}</td>`;
-		tableHTML += `<td>${flight.origin}</td>`;
-		tableHTML += `<td>${flight.destination}</td>`;
-		tableHTML += `<td>${flight.date}</td>`;
-		tableHTML += "</tr>";
-	} else {
-		bookmarkedFlights.forEach(idx => {
-			let idStr = "box" + idx;
-			let flight = currentFlightsList[idStr];
+
+	if(bookmarkedFlights){
+		if (len(bookmarkedFlights) == 1) {
+			let flight = currentFlightsList["box0"];
 			tableHTML += "<tr>";
 			tableHTML += `<td>${flight.price}</td>`;
 			tableHTML += `<td>${flight.origin}</td>`;
 			tableHTML += `<td>${flight.destination}</td>`;
 			tableHTML += `<td>${flight.date}</td>`;
 			tableHTML += "</tr>";
-		});
+		} else {
+			bookmarkedFlights.forEach(idx => {
+				let idStr = "box" + idx;
+				let flight = currentFlightsList[idStr];
+				tableHTML += "<tr>";
+				tableHTML += `<td>${flight.price}</td>`;
+				tableHTML += `<td>${flight.origin}</td>`;
+				tableHTML += `<td>${flight.destination}</td>`;
+				tableHTML += `<td>${flight.date}</td>`;
+				tableHTML += "</tr>";
+			});
+		}
 	}
 	
 	tableHTML += "</table>";
@@ -136,11 +147,11 @@ app.get('/findFlights', (req, resp) => {
 // Skyscanner API call to get best flights 
 // params: int numAdults, String origin, String destination, String departureDate, String currency
 // note: numAdults allows values 1-8, departureDate in format YYYY-MM-DD
-app.post('/findFlights', (req, resp) => {
+app.post('/displayFlights', (req, resp) => {
 
     const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 	let date = month + " " + day + ", " +year;
-	let currentDate = new Date();;
+	let currentDate = new Date();
 	const months = {
 		January: '01',
 		February: '02',
@@ -164,12 +175,11 @@ app.post('/findFlights', (req, resp) => {
 		  'X-RapidAPI-Key': '1a749e999emsh3e7cfb511775fcep1d780cjsn7dd345578276',
 		  'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
 		}
-	  };
-	  function sleep(ms) {
+	};
+	function sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	} // sleep before querying api again
 	
-	let apiJSON;
 	let idGlobal;
 	let apiCallCount = 0;
 	const maxApiCallCount = 4;
@@ -183,6 +193,17 @@ app.post('/findFlights', (req, resp) => {
 		.then(json => { apiJSON = json })
 		.catch(err => console.error('error:' + err));
 
+
+		/* COMMENT THIS OUT */
+		const fs = require('fs');
+
+		let rawdata = fs.readFileSync('sampleResponse.json');
+		apiJSON = JSON.parse(rawdata);
+
+
+		/* until here */
+
+
 		if(apiCallCount > maxApiCallCount || apiJSON !== undefined) {
 			if (apiCallCount > maxApiCallCount) {
 				clearInterval(idGlobal);
@@ -191,38 +212,57 @@ app.post('/findFlights', (req, resp) => {
 				resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
 			} else if (Number(apiJSON.context.totalResults) >= 5){
 				clearInterval(idGlobal);
+
 				let displayFlightsTable = makeTable(apiJSON);
 				resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
 			}
 		}
 	}
 	getAPIInformation();
+
+	
+	
 });
 
 
-app.post('/displayFlights', (req, resp) => {
+app.post('/displayNewBookmarkedFlights', (req, resp) => {
+
+	const {name, email, origin, destination, month, day, year, numTickets} = req.body;
+
+
+
+	let ids = []
+
+	if (req.body.flight0){
+		console.log("here");
+		console.log(req.body.flight0.value);
+	}
+
+	let checked = req.body;
+
+	// console.log(checked);
+	
+   	// checked.forEach(function (item) {
+    //    ids.push(item.id);
+   	// });
+
+
 	let currentDate = new Date();
-	const { bookmarkedFlights } = req.body;
-	let displayFlightsTable = makeBookmarksTable(bookmarkedFlights);
-	resp.render("displayNewBookmarkedFlights.ejs", {currentDate, displayFlightsTable})
-})
 
-/* app.get('/displayFlights'), (req, resp) => {
+	let bookTable = makeBookmarksTable(array);
 
-	const {flightNum} = req.body;
-
-	// get flight from API
 	async function driver(){
         try{
             await client.connect();
+	
 
+		
+		
+			ids.forEach(async (flightID) => {
 
-            await insertFlight(client, databaseAndCollection, variables);
-
-			console.log("Flight Bookmarked!");
-
-			return variables;
-
+				let flight = Object.keys(apiJSON.itineraries.buckets.items).find(flight => apiJSON.itineraries.buckets.items.id === flightID);
+				await insertFlight(client, databaseAndCollection, flight);
+			});
 
 
         } catch (e) {
@@ -233,40 +273,19 @@ app.post('/displayFlights', (req, resp) => {
     };
 
     driver().then((res)=> {
-*/
 
 
-		//response.render("displayFlights", res);
+		resp.render("displayNewBookmarkedFlights", bookTable, currentDate);
 
-        // let table = "<style>table, th, td{ border: 1px double black;}</style>"
-
-        // table += "<table><thead><tr><th>Item</th><th>Cost</th></tr></thead><tbody>";
+	});
 
 
-        // res.forEach((obj) => { 
-        //     table += "<tr>";
-
-
-        //     table += `<td>${obj.name}</td>`;
-
-        //     table += `<td>${obj.gpa}</td>`;
-
-        //     table += "</tr>";
-
-        // });
-
-
-
-        // table += "</tbody></table>";
-
-
-
-    //});
+});
 
 
 
 
-//}
+
 app.get('/getBookmarkedFlights', (req, resp) => {
     resp.render("getBookmarkedFlights");
 });
@@ -293,35 +312,10 @@ app.post('/yourBookmarkedFlights', (req, resp) => {
 
     driver().then((res)=> {
 
+		let flightsTable = makeBookmarksTable(res);
+	
 
-        let table = "<style>table, th, td{ border: 1px double black;}</style>"
-
-        table += "<table><thead><tr><th>Item</th><th>Cost</th></tr></thead><tbody>";
-
-
-		/* Will have to add functionality depending on what flight info we want to display*/
-
-        res.forEach((obj) => { 
-            table += "<tr>";
-
-
-            table += `<td>${obj.name}</td>`;
-
-            table += `<td>${obj.gpa}</td>`;
-
-            table += "</tr>";
-
-        });
-
-
-
-        table += "</tbody></table>";
-
-		const variables = {
-            flightTable: table
-        };
-
-		resp.render("yourBookmarkedFlights", variables);
+		resp.render("yourBookmarkedFlights", flightsTable);
 
 
 
