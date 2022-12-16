@@ -90,7 +90,7 @@ function makeBookmarksTable(bookmarkedFlights) {
 	return tableHTML;
 
 }
-const portNum = process.argv[2];
+const portNum = 3000;
 
 process.stdin.setEncoding("utf8"); /* encoding */
 const intro = "Web server started and running at http://localhost:"+portNum;
