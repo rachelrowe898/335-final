@@ -42,21 +42,25 @@ async function lookupByEmail(client, databaseAndCollection, clientEmail) {
 
 let currentFlightsList = new Object();
 function makeTable(response) {
-	bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
 	tableHTML = "<table border='1'>";
 	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Date</th></tr>";
-	let idx = 0;
-	bestFlights.forEach(element => {
-		// do fields we'll put in mongo, tbd
-		let idStr = "box" + idx;
-		currentFlightsList[idStr] = {id: element.id, price: element.price.formatted, origin: element.legs[0].origin.id, destination: element.legs[0].destination.id, date: element.legs[0].departure};
-		tableHTML += "<tr>";
-		tableHTML += `<td><input type="checkbox" id="${idStr}" value="${idx}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
-		tableHTML += `<td>${element.price.formatted}</td>`;
-		tableHTML += `<td>${element.legs[0].departure}</td>`;
-		tableHTML += "</tr>";
-		idx++;
-	});
+
+	if (response){
+		bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
+		
+		let idx = 0;
+		bestFlights.forEach(element => {
+			// do fields we'll put in mongo, tbd
+			let idStr = "box" + idx;
+			currentFlightsList[idStr] = {id: element.id, price: element.price.formatted, origin: element.legs[0].origin.id, destination: element.legs[0].destination.id, date: element.legs[0].departure};
+			tableHTML += "<tr>";
+			tableHTML += `<td><input type="checkbox" id="${idStr}" value="${idx}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
+			tableHTML += `<td>${element.price.formatted}</td>`;
+			tableHTML += `<td>${element.legs[0].departure}</td>`;
+			tableHTML += "</tr>";
+			idx++;
+		});
+	}
 	tableHTML += "</table>";
 	return tableHTML;
 
@@ -65,25 +69,28 @@ function makeTable(response) {
 function makeBookmarksTable(bookmarkedFlights) {
 	tableHTML = "<table border='1'>";
 	tableHTML += "<tr><th>Price</th><th>Origin</th><th>Destination</th><th>Date</th></tr>";
-	if (bookmarkedFlights.length == 1) {
-		let flight = currentFlightsList["box0"];
-		tableHTML += "<tr>";
-		tableHTML += `<td>${flight.price}</td>`;
-		tableHTML += `<td>${flight.origin}</td>`;
-		tableHTML += `<td>${flight.destination}</td>`;
-		tableHTML += `<td>${flight.date}</td>`;
-		tableHTML += "</tr>";
-	} else {
-		bookmarkedFlights.forEach(idx => {
-			let idStr = "box" + idx;
-			let flight = currentFlightsList[idStr];
+
+	if(bookmarkedFlights){
+		if (len(bookmarkedFlights) == 1) {
+			let flight = currentFlightsList["box0"];
 			tableHTML += "<tr>";
 			tableHTML += `<td>${flight.price}</td>`;
 			tableHTML += `<td>${flight.origin}</td>`;
 			tableHTML += `<td>${flight.destination}</td>`;
 			tableHTML += `<td>${flight.date}</td>`;
 			tableHTML += "</tr>";
-		});
+		} else {
+			bookmarkedFlights.forEach(idx => {
+				let idStr = "box" + idx;
+				let flight = currentFlightsList[idStr];
+				tableHTML += "<tr>";
+				tableHTML += `<td>${flight.price}</td>`;
+				tableHTML += `<td>${flight.origin}</td>`;
+				tableHTML += `<td>${flight.destination}</td>`;
+				tableHTML += `<td>${flight.date}</td>`;
+				tableHTML += "</tr>";
+			});
+		}
 	}
 	
 	tableHTML += "</table>";
@@ -136,7 +143,7 @@ app.get('/findFlights', (req, resp) => {
 // Skyscanner API call to get best flights 
 // params: int numAdults, String origin, String destination, String departureDate, String currency
 // note: numAdults allows values 1-8, departureDate in format YYYY-MM-DD
-app.post('/findFlights', (req, resp) => {
+app.post('/displayFlights', (req, resp) => {
 
     const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 	let date = month + " " + day + ", " +year;
@@ -164,8 +171,8 @@ app.post('/findFlights', (req, resp) => {
 		  'X-RapidAPI-Key': '1a749e999emsh3e7cfb511775fcep1d780cjsn7dd345578276',
 		  'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
 		}
-	  };
-	  function sleep(ms) {
+	};
+	function sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	} // sleep before querying api again
 	
@@ -197,15 +204,26 @@ app.post('/findFlights', (req, resp) => {
 		}
 	}
 	getAPIInformation();
+	
 });
 
 
-app.post('/displayFlights', (req, resp) => {
-	let currentDate = new Date();
-	const { bookmarkedFlights } = req.body;
-	let displayFlightsTable = makeBookmarksTable(bookmarkedFlights);
-	resp.render("displayNewBookmarkedFlights.ejs", {currentDate, displayFlightsTable})
-})
+// app.post('/displayFlights', (req, resp) => {
+
+// 	let currentDate = new Date();
+
+
+// 	const {name, email, origin, } = req.body
+
+// 	const { matchedFlights } = req.body;
+
+
+// 	let displayFlightsTable = makeTable(matchedFlights);
+
+
+// 	resp.render("displayFlights.ejs", {currentDate, displayFlightsTable})
+
+// });
 
 /* app.get('/displayFlights'), (req, resp) => {
 
