@@ -14,6 +14,7 @@ const password = process.env.MONGO_DB_PASSWORD;
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { response } = require("express");
 
 
 const uri = `mongodb+srv://${userName}:${password}@cluster0.ytqxemr.mongodb.net/?retryWrites=true&w=majority`;
@@ -147,7 +148,7 @@ app.post('/displayFlights', (req, resp) => {
 
     const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 	let date = month + " " + day + ", " +year;
-	let currentDate = new Date();;
+	let currentDate = new Date();
 	const months = {
 		January: '01',
 		February: '02',
@@ -198,49 +199,45 @@ app.post('/displayFlights', (req, resp) => {
 				resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
 			} else if (Number(apiJSON.context.totalResults) >= 5){
 				clearInterval(idGlobal);
+
 				let displayFlightsTable = makeTable(apiJSON);
 				resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
 			}
 		}
 	}
 	getAPIInformation();
+
+	
 	
 });
 
 
-// app.post('/displayFlights', (req, resp) => {
+app.post('/displayNewBookmarkedFlights', (req, resp) => {
 
-// 	let currentDate = new Date();
-
-
-// 	const {name, email, origin, } = req.body
-
-// 	const { matchedFlights } = req.body;
+	const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 
 
-// 	let displayFlightsTable = makeTable(matchedFlights);
+	var array = []
+	var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
 
+	for (var i = 0; i < checkboxes.length; i++) {
 
-// 	resp.render("displayFlights.ejs", {currentDate, displayFlightsTable})
+		/* push flight info returned by API based on ID given by value */
+		array.push(checkboxes[i].value)
+	}
 
-// });
+	let currentDate = new Date();
 
-/* app.get('/displayFlights'), (req, resp) => {
+	let bookTable = makeBookmarksTable(array);
 
-	const {flightNum} = req.body;
-
-	// get flight from API
 	async function driver(){
         try{
             await client.connect();
-
-
-            await insertFlight(client, databaseAndCollection, variables);
-
-			console.log("Flight Bookmarked!");
-
-			return variables;
-
+	
+		
+			array.forEach(async (flight) => {
+				await insertFlight(client, databaseAndCollection, flight);
+			});
 
 
         } catch (e) {
@@ -251,40 +248,19 @@ app.post('/displayFlights', (req, resp) => {
     };
 
     driver().then((res)=> {
-*/
 
 
-		//response.render("displayFlights", res);
+		resp.render("displayNewBookmarkedFlights", bookTable, currentDate);
 
-        // let table = "<style>table, th, td{ border: 1px double black;}</style>"
-
-        // table += "<table><thead><tr><th>Item</th><th>Cost</th></tr></thead><tbody>";
+	});
 
 
-        // res.forEach((obj) => { 
-        //     table += "<tr>";
-
-
-        //     table += `<td>${obj.name}</td>`;
-
-        //     table += `<td>${obj.gpa}</td>`;
-
-        //     table += "</tr>";
-
-        // });
-
-
-
-        // table += "</tbody></table>";
-
-
-
-    //});
+});
 
 
 
 
-//}
+
 app.get('/getBookmarkedFlights', (req, resp) => {
     resp.render("getBookmarkedFlights");
 });
@@ -311,35 +287,10 @@ app.post('/yourBookmarkedFlights', (req, resp) => {
 
     driver().then((res)=> {
 
+		let flightsTable = makeBookmarksTable(res);
+	
 
-        let table = "<style>table, th, td{ border: 1px double black;}</style>"
-
-        table += "<table><thead><tr><th>Item</th><th>Cost</th></tr></thead><tbody>";
-
-
-		/* Will have to add functionality depending on what flight info we want to display*/
-
-        res.forEach((obj) => { 
-            table += "<tr>";
-
-
-            table += `<td>${obj.name}</td>`;
-
-            table += `<td>${obj.gpa}</td>`;
-
-            table += "</tr>";
-
-        });
-
-
-
-        table += "</tbody></table>";
-
-		const variables = {
-            flightTable: table
-        };
-
-		resp.render("yourBookmarkedFlights", variables);
+		resp.render("yourBookmarkedFlights", flightsTable);
 
 
 
