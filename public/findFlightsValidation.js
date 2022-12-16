@@ -20,7 +20,7 @@ function validateForm() {
         invalidMessages += "Invalid year";   
     } 
 
-    if(userDate.getFullYear() >= currentDate.getFullYear()) {
+    if(userDate.getFullYear() == currentDate.getFullYear()) {
         if(userDate.getMonth() < currentDate.getMonth()) { //if year is the same, check if month is in the past
             invalidMessages += "Invalid month";
         } else if((userDate.getMonth() == currentDate.getMonth())) {
