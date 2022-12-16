@@ -49,18 +49,16 @@ function fetchAPIData(numTickets, origin, destination, departureDate) {
 */
 
 function makeTable(response) {
-	console.log(response.itineraries.buckets[0].items);
 	bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
 	tableHTML = "<table border='1'>";
 	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th></tr>";
 	bestFlights.forEach(element => {
 		tableHTML += "<tr>";
-		tableHTML += `<td><input type="checkbox" id="${element.id}"/></td>`;
+		tableHTML += `<td><input type="checkbox" id="${element.id}"/></td>`; // could change to be flight1, flight2, etc
 		tableHTML += `<td>${element.price.formatted}</td>`;
 		tableHTML += "</tr>";
 	});
 	tableHTML += "</table>";
-	console.log(tableHTML);
 	return tableHTML;
 
 }
@@ -149,12 +147,12 @@ app.post('/findFlights', (req, resp) => {
 	// store bookmarked flights in MongoDB here
 	resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
 });
-
+/* commented out since we don't have this working yet
 app.post('/displayFlights', (req, resp) => {
 	let currentDate = new Date();
 	// pass the bookmarked flights table here!
 	resp.render("displayNewBookmarkedFlights.ejs", {currentDate, displayFlightsTable})
-})
+}) */
 
 // app.get('/displayFlights', (req, resp) => {
     
