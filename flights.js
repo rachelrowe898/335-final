@@ -49,16 +49,19 @@ function fetchAPIData(numTickets, origin, destination, departureDate) {
 */
 
 function makeTable(response) {
-	bestFlights = response.buckets.best;
+	console.log(response.itineraries.buckets[0].items);
+	bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
 	tableHTML = "<table border='1'>";
-	tableHTML += "<tr><th>Flight ID</th><th>From</th><th>To</th><th>Price</th></tr>";
-	let id = 1;
+	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th></tr>";
 	bestFlights.forEach(element => {
 		tableHTML += "<tr>";
-		tableHTML += `<td>${id++}</td>`;
+		tableHTML += `<td><input type="checkbox" id="${element.id}"/></td>`;
 		tableHTML += `<td>${element.price.formatted}</td>`;
 		tableHTML += "</tr>";
 	});
+	tableHTML += "</table>";
+	console.log(tableHTML);
+	return tableHTML;
 
 }
 
@@ -140,9 +143,11 @@ app.post('/findFlights', (req, resp) => {
 	let currentDate = new Date();;
 
 	// send info to func that calls API and parses that response to make that flightTable
-	let responseBody = fetchAPIData(numTickets, origin, destination, departureDate);
+	//let responseBody = fetchAPIData(numTickets, origin, destination, departureDate);
+	const responseBody = require(`./sampleResponse.json`);
 	let displayFlightsTable = makeTable(responseBody);
-	resp.render("displayFlights", {name, email, origin, destination, date, numTickets, currentDate});
+	// store bookmarked flights in MongoDB here
+	resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
 });
 
 app.post('/displayFlights', (req, resp) => {

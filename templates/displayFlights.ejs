@@ -19,15 +19,13 @@
 			<hr>
 	
 			<form action="/displayFlights" method="post">
-				<fieldset>            
-					<label><strong>Bookmark Flight No. </strong><input type="text" name="name"/></label>
-				</fieldset>
+				<h3>Flights Matching Given Criteria</h3>
+					<%- displayFlightsTable %>
 				<input type="reset" value="Clear"/>
 				<input type="submit" id="bookmarkFlight" value="Bookmark"/>
 			</form>
-			<hr>
 	
-			<h3>Flights Matching Given Criteria</h3>
+			
 			
 			<hr>
 			<strong> Request completed at <%- currentDate %></strong>
