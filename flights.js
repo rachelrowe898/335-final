@@ -1,5 +1,5 @@
 const http = require("http");
-const unirest = require("unirest");
+const fetch = require('node-fetch');
 let path = require("path");
 const express = require("express");
 const app = express();
@@ -18,60 +18,6 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const uri = `mongodb+srv://${userName}:${password}@cluster0.ytqxemr.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
-/* Skyscanner API call to get best flights 
-params: int numAdults, String origin, String destination, String departureDate, String currency
-note: numAdults allows values 1-8, departureDate in format YYYY-MM-DD
-*/
-/* commented out bc we're broke and can't be affording extra calls :')
-const req = unirest("GET", "https://skyscanner44.p.rapidapi.com/search");
-
-req.query({
-	"adults": "1",
-	"origin": "MUC",
-	"destination": "BER",
-	"departureDate": "2022-10-11",
-	"currency": "EUR"
-});
-
-req.headers({
-	"X-RapidAPI-Key": "83d5143addmshf8f6e06a5eebfc0p16813djsnee59aab7da18",
-	"X-RapidAPI-Host": "skyscanner44.p.rapidapi.com",
-	"useQueryString": true
-});
-
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
-
-	console.log(res.body);
-});
-*/
-
-/* Constructing routes */
-
-// async function main() {
-//     try {
-//         await client.connect();
-
-//         /* App Part Start */
-
-//         app.use(bodyParser.urlencoded({extended:false}));
-//         app.set("views", path.resolve(__dirname, "templates"));
-//         app.set("view engine", "ejs");
-
-//         app.listen(port);
-
-//         app.get('/', (req, resp) => {
-//             resp.render("index");
-//         });
-//         
-//         
-
-//         /* App Part End */
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }
 
 async function insertFlight(client, databaseAndCollection, newFlight) {
 
@@ -94,12 +40,56 @@ async function lookupByEmail(client, databaseAndCollection, clientEmail) {
    }
 }
 
+let currentFlightsList = new Object();
+function makeTable(response) {
+	bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
+	tableHTML = "<table border='1'>";
+	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Date</th></tr>";
+	let idx = 0;
+	bestFlights.forEach(element => {
+		// do fields we'll put in mongo, tbd
+		let idStr = "box" + idx;
+		currentFlightsList[idStr] = {id: element.id, price: element.price.formatted, origin: element.legs[0].origin.id, destination: element.legs[0].destination.id, date: element.legs[0].departure};
+		tableHTML += "<tr>";
+		tableHTML += `<td><input type="checkbox" id="${idStr}" value="${idx}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
+		tableHTML += `<td>${element.price.formatted}</td>`;
+		tableHTML += `<td>${element.legs[0].departure}</td>`;
+		tableHTML += "</tr>";
+		idx++;
+	});
+	tableHTML += "</table>";
+	return tableHTML;
 
+}
 
+function makeBookmarksTable(bookmarkedFlights) {
+	tableHTML = "<table border='1'>";
+	tableHTML += "<tr><th>Price</th><th>Origin</th><th>Destination</th><th>Date</th></tr>";
+	if (bookmarkedFlights.length == 1) {
+		let flight = currentFlightsList["box0"];
+		tableHTML += "<tr>";
+		tableHTML += `<td>${flight.price}</td>`;
+		tableHTML += `<td>${flight.origin}</td>`;
+		tableHTML += `<td>${flight.destination}</td>`;
+		tableHTML += `<td>${flight.date}</td>`;
+		tableHTML += "</tr>";
+	} else {
+		bookmarkedFlights.forEach(idx => {
+			let idStr = "box" + idx;
+			let flight = currentFlightsList[idStr];
+			tableHTML += "<tr>";
+			tableHTML += `<td>${flight.price}</td>`;
+			tableHTML += `<td>${flight.origin}</td>`;
+			tableHTML += `<td>${flight.destination}</td>`;
+			tableHTML += `<td>${flight.date}</td>`;
+			tableHTML += "</tr>";
+		});
+	}
+	
+	tableHTML += "</table>";
+	return tableHTML;
 
-
-
-
+}
 const portNum = process.argv[2];
 
 process.stdin.setEncoding("utf8"); /* encoding */
@@ -143,24 +133,85 @@ app.get('/findFlights', (req, resp) => {
     resp.render("findFlights");
 });
 
-app.post('/displayFlights', (req, resp) => {
+// Skyscanner API call to get best flights 
+// params: int numAdults, String origin, String destination, String departureDate, String currency
+// note: numAdults allows values 1-8, departureDate in format YYYY-MM-DD
+app.post('/findFlights', (req, resp) => {
 
     const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 	let date = month + " " + day + ", " +year;
-	let currentDate = new Date();
+	let currentDate = new Date();;
+	const months = {
+		January: '01',
+		February: '02',
+		March: '03',
+		April: '04',
+		May: '05',
+		June: '06',
+		July: '07',
+		August: '08',
+		September: '09',
+		October: '10',
+		November: '11',
+		December: '12',
+	}
+	let formattedDay = (day.toString().length == 2) ? day : "0" + day.toString();
+	let formattedDate = year + "-" + months[month] + "-" + formattedDay;
+	const url = `https://skyscanner44.p.rapidapi.com/search?adults=${numTickets}&origin=${origin}&destination=${destination}&departureDate=${formattedDate}&currency=USD`;
+	const options = {
+		method: 'GET',
+		headers: {
+		  'X-RapidAPI-Key': '1a749e999emsh3e7cfb511775fcep1d780cjsn7dd345578276',
+		  'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
+		}
+	  };
+	  function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	} // sleep before querying api again
+	
+	let apiJSON;
+	let idGlobal;
+	let apiCallCount = 0;
+	const maxApiCallCount = 4;
+	function getAPIInformation() {
+		idGlobal = setInterval(makeAPICall, 5000);
+	}
+	function makeAPICall() {
+		apiCallCount++;
+		fetch(url, options)
+		.then(res => res.json())
+		.then(json => { apiJSON = json })
+		.catch(err => console.error('error:' + err));
 
-	resp.render("displayFlights", { name, email, origin, destination, date, numTickets, currentDate});
+		if(apiCallCount > maxApiCallCount || apiJSON !== undefined) {
+			if (apiCallCount > maxApiCallCount) {
+				clearInterval(idGlobal);
+				// error message
+				let displayFlightsTable = "<h3 style='color:red'>Sorry, there was an error retrieving your flights. Please try again.</h3>";
+				resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
+			} else if (Number(apiJSON.context.totalResults) >= 5){
+				clearInterval(idGlobal);
+				let displayFlightsTable = makeTable(apiJSON);
+				resp.render("displayFlights", {name, email, origin, destination, date, numTickets, displayFlightsTable, currentDate});
+			}
+		}
+	}
+	getAPIInformation();
 });
 
-app.get('/displayFlights'), (req, resp) => {
+
+app.post('/displayFlights', (req, resp) => {
+	let currentDate = new Date();
+	const { bookmarkedFlights } = req.body;
+	let displayFlightsTable = makeBookmarksTable(bookmarkedFlights);
+	resp.render("displayNewBookmarkedFlights.ejs", {currentDate, displayFlightsTable})
+})
+
+/* app.get('/displayFlights'), (req, resp) => {
 
 	const {flightNum} = req.body;
 
-	/*get flight from API
-		*/
-
-
-
+	// get flight from API
 	async function driver(){
         try{
             await client.connect();
@@ -182,6 +233,7 @@ app.get('/displayFlights'), (req, resp) => {
     };
 
     driver().then((res)=> {
+*/
 
 
 		response.render("displayFlights", res);

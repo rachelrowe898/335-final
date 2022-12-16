@@ -1,0 +1,1275 @@
+{
+    "itineraries": {
+      "buckets": [
+        {
+          "id": "Best",
+          "name": "Best",
+          "items": [
+            {
+              "id": "12387-2212311735--31781-1-13554-2301011125",
+              "price": {
+                "raw": 288,
+                "formatted": "288 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311735--31781-1-13554-2301011125",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 770,
+                  "stopCount": 1,
+                  "isSmallestStops": false,
+                  "departure": "2022-12-31T17:35:00",
+                  "arrival": "2023-01-01T11:25:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -31781,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/TP.png",
+                        "name": "TAP Air Portugal"
+                      }
+                    ],
+                    "operationType": "fully_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13577-2212311735-2301010535--31781",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LIS",
+                        "parent": {
+                          "flightPlaceId": "LISB",
+                          "name": "Lisbon",
+                          "type": "City"
+                        },
+                        "name": "Lisbon",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:35:00",
+                      "arrival": "2023-01-01T05:35:00",
+                      "durationInMinutes": 420,
+                      "flightNumber": "232",
+                      "marketingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      }
+                    },
+                    {
+                      "id": "13577-13554-2301010835-2301011125--31781",
+                      "origin": {
+                        "flightPlaceId": "LIS",
+                        "parent": {
+                          "flightPlaceId": "LISB",
+                          "name": "Lisbon",
+                          "type": "City"
+                        },
+                        "name": "Lisbon",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2023-01-01T08:35:00",
+                      "arrival": "2023-01-01T11:25:00",
+                      "durationInMinutes": 170,
+                      "flightNumber": "1354",
+                      "marketingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "tags": [
+                "cheapest"
+              ],
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 5.51121,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311735--31781-1-13554-2301011125?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212311745--32544-0-13554-2301010555",
+              "price": {
+                "raw": 574,
+                "formatted": "574 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311745--32544-0-13554-2301010555",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 430,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T17:45:00",
+                  "arrival": "2023-01-01T05:55:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32544,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/OS.png",
+                        "name": "Austrian Airlines"
+                      }
+                    ],
+                    "operating": [
+                      {
+                        "id": -31722,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/UA.png",
+                        "name": "United"
+                      }
+                    ],
+                    "operationType": "not_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212311745-2301010555--32544",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:45:00",
+                      "arrival": "2023-01-01T05:55:00",
+                      "durationInMinutes": 430,
+                      "flightNumber": "7806",
+                      "marketingCarrier": {
+                        "id": -32544,
+                        "name": "Austrian Airlines",
+                        "alternateId": "OS",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31722,
+                        "name": "United",
+                        "alternateId": "UA",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.93999,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311745--32544-0-13554-2301010555?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212311745--32090-0-13554-2301010555",
+              "price": {
+                "raw": 578,
+                "formatted": "578 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311745--32090-0-13554-2301010555",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 430,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T17:45:00",
+                  "arrival": "2023-01-01T05:55:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32090,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/LH.png",
+                        "name": "Lufthansa"
+                      }
+                    ],
+                    "operating": [
+                      {
+                        "id": -31722,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/UA.png",
+                        "name": "United"
+                      }
+                    ],
+                    "operationType": "not_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212311745-2301010555--32090",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:45:00",
+                      "arrival": "2023-01-01T05:55:00",
+                      "durationInMinutes": 430,
+                      "flightNumber": "9259",
+                      "marketingCarrier": {
+                        "id": -32090,
+                        "name": "Lufthansa",
+                        "alternateId": "LH",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31722,
+                        "name": "United",
+                        "alternateId": "UA",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.9022,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311745--32090-0-13554-2301010555?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            }
+          ]
+        },
+        {
+          "id": "Fastest",
+          "name": "Fastest",
+          "items": [
+            {
+              "id": "12387-2212312205--32222-0-13554-2301011010",
+              "price": {
+                "raw": 723,
+                "formatted": "723 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212312205--32222-0-13554-2301011010",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 425,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T22:05:00",
+                  "arrival": "2023-01-01T10:10:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32222,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/IB.png",
+                        "name": "Iberia"
+                      }
+                    ],
+                    "operating": [
+                      {
+                        "id": -32480,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/BA.png",
+                        "name": "British Airways"
+                      }
+                    ],
+                    "operationType": "not_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212312205-2301011010--32222",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T22:05:00",
+                      "arrival": "2023-01-01T10:10:00",
+                      "durationInMinutes": 425,
+                      "flightNumber": "7448",
+                      "marketingCarrier": {
+                        "id": -32222,
+                        "name": "Iberia",
+                        "alternateId": "IB",
+                        "allianceId": -32000
+                      },
+                      "operatingCarrier": {
+                        "id": -32480,
+                        "name": "British Airways",
+                        "alternateId": "BA",
+                        "allianceId": -32000
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "eco": {
+                "ecoContenderDelta": 14.890093
+              },
+              "tags": [
+                "shortest"
+              ],
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 3.96631,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212312205--32222-0-13554-2301011010?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212311825--32480-0-13554-2301010630",
+              "price": {
+                "raw": 772,
+                "formatted": "772 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311825--32480-0-13554-2301010630",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 425,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T18:25:00",
+                  "arrival": "2023-01-01T06:30:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32480,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/BA.png",
+                        "name": "British Airways"
+                      }
+                    ],
+                    "operationType": "fully_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212311825-2301010630--32480",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T18:25:00",
+                      "arrival": "2023-01-01T06:30:00",
+                      "durationInMinutes": 425,
+                      "flightNumber": "216",
+                      "marketingCarrier": {
+                        "id": -32480,
+                        "name": "British Airways",
+                        "alternateId": "BA",
+                        "allianceId": -32000
+                      },
+                      "operatingCarrier": {
+                        "id": -32480,
+                        "name": "British Airways",
+                        "alternateId": "BA",
+                        "allianceId": -32000
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "eco": {
+                "ecoContenderDelta": 9.979475
+              },
+              "tags": [
+                "shortest"
+              ],
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 3.71391,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311825--32480-0-13554-2301010630?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212312205--32480-0-13554-2301011010",
+              "price": {
+                "raw": 644,
+                "formatted": "644 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212312205--32480-0-13554-2301011010",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 425,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T22:05:00",
+                  "arrival": "2023-01-01T10:10:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32480,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/BA.png",
+                        "name": "British Airways"
+                      }
+                    ],
+                    "operationType": "fully_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212312205-2301011010--32480",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T22:05:00",
+                      "arrival": "2023-01-01T10:10:00",
+                      "durationInMinutes": 425,
+                      "flightNumber": "292",
+                      "marketingCarrier": {
+                        "id": -32480,
+                        "name": "British Airways",
+                        "alternateId": "BA",
+                        "allianceId": -32000
+                      },
+                      "operatingCarrier": {
+                        "id": -32480,
+                        "name": "British Airways",
+                        "alternateId": "BA",
+                        "allianceId": -32000
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "eco": {
+                "ecoContenderDelta": 14.890093
+              },
+              "tags": [
+                "shortest"
+              ],
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.45144,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212312205--32480-0-13554-2301011010?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            }
+          ]
+        },
+        {
+          "id": "Cheapest",
+          "name": "Cheapest",
+          "items": [
+            {
+              "id": "12387-2212311735--31781-1-13554-2301011125",
+              "price": {
+                "raw": 288,
+                "formatted": "288 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311735--31781-1-13554-2301011125",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 770,
+                  "stopCount": 1,
+                  "isSmallestStops": false,
+                  "departure": "2022-12-31T17:35:00",
+                  "arrival": "2023-01-01T11:25:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -31781,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/TP.png",
+                        "name": "TAP Air Portugal"
+                      }
+                    ],
+                    "operationType": "fully_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13577-2212311735-2301010535--31781",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LIS",
+                        "parent": {
+                          "flightPlaceId": "LISB",
+                          "name": "Lisbon",
+                          "type": "City"
+                        },
+                        "name": "Lisbon",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:35:00",
+                      "arrival": "2023-01-01T05:35:00",
+                      "durationInMinutes": 420,
+                      "flightNumber": "232",
+                      "marketingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      }
+                    },
+                    {
+                      "id": "13577-13554-2301010835-2301011125--31781",
+                      "origin": {
+                        "flightPlaceId": "LIS",
+                        "parent": {
+                          "flightPlaceId": "LISB",
+                          "name": "Lisbon",
+                          "type": "City"
+                        },
+                        "name": "Lisbon",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2023-01-01T08:35:00",
+                      "arrival": "2023-01-01T11:25:00",
+                      "durationInMinutes": 170,
+                      "flightNumber": "1354",
+                      "marketingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31781,
+                        "name": "TAP Air Portugal",
+                        "alternateId": "TP",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "tags": [
+                "cheapest"
+              ],
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 5.51121,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311735--31781-1-13554-2301011125?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212311940--32217-1-13554-2301011050",
+              "price": {
+                "raw": 445,
+                "formatted": "445 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311940--32217-1-13554-2301011050",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 610,
+                  "stopCount": 1,
+                  "isSmallestStops": false,
+                  "departure": "2022-12-31T19:40:00",
+                  "arrival": "2023-01-01T10:50:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32217,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/FI.png",
+                        "name": "Icelandair"
+                      }
+                    ],
+                    "operationType": "fully_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-12974-2212311940-2301010635--32217",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "KEF",
+                        "parent": {
+                          "flightPlaceId": "REYK",
+                          "name": "Reykjavik",
+                          "type": "City"
+                        },
+                        "name": "Reykjavik Keflavik",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T19:40:00",
+                      "arrival": "2023-01-01T06:35:00",
+                      "durationInMinutes": 355,
+                      "flightNumber": "644",
+                      "marketingCarrier": {
+                        "id": -32217,
+                        "name": "Icelandair",
+                        "alternateId": "FI",
+                        "allianceId": 0
+                      },
+                      "operatingCarrier": {
+                        "id": -32217,
+                        "name": "Icelandair",
+                        "alternateId": "FI",
+                        "allianceId": 0
+                      }
+                    },
+                    {
+                      "id": "12974-13554-2301010740-2301011050--32217",
+                      "origin": {
+                        "flightPlaceId": "KEF",
+                        "parent": {
+                          "flightPlaceId": "REYK",
+                          "name": "Reykjavik",
+                          "type": "City"
+                        },
+                        "name": "Reykjavik Keflavik",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2023-01-01T07:40:00",
+                      "arrival": "2023-01-01T10:50:00",
+                      "durationInMinutes": 190,
+                      "flightNumber": "450",
+                      "marketingCarrier": {
+                        "id": -32217,
+                        "name": "Icelandair",
+                        "alternateId": "FI",
+                        "allianceId": 0
+                      },
+                      "operatingCarrier": {
+                        "id": -32217,
+                        "name": "Icelandair",
+                        "alternateId": "FI",
+                        "allianceId": 0
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.4917,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311940--32217-1-13554-2301011050?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212311745--32544-0-13554-2301010555",
+              "price": {
+                "raw": 574,
+                "formatted": "574 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311745--32544-0-13554-2301010555",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 430,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T17:45:00",
+                  "arrival": "2023-01-01T05:55:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32544,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/OS.png",
+                        "name": "Austrian Airlines"
+                      }
+                    ],
+                    "operating": [
+                      {
+                        "id": -31722,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/UA.png",
+                        "name": "United"
+                      }
+                    ],
+                    "operationType": "not_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212311745-2301010555--32544",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:45:00",
+                      "arrival": "2023-01-01T05:55:00",
+                      "durationInMinutes": 430,
+                      "flightNumber": "7806",
+                      "marketingCarrier": {
+                        "id": -32544,
+                        "name": "Austrian Airlines",
+                        "alternateId": "OS",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31722,
+                        "name": "United",
+                        "alternateId": "UA",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.93999,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311745--32544-0-13554-2301010555?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            }
+          ]
+        },
+        {
+          "id": "Direct",
+          "name": "Direct",
+          "items": [
+            {
+              "id": "12387-2212311745--32544-0-13554-2301010555",
+              "price": {
+                "raw": 574,
+                "formatted": "574 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311745--32544-0-13554-2301010555",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 430,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T17:45:00",
+                  "arrival": "2023-01-01T05:55:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32544,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/OS.png",
+                        "name": "Austrian Airlines"
+                      }
+                    ],
+                    "operating": [
+                      {
+                        "id": -31722,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/UA.png",
+                        "name": "United"
+                      }
+                    ],
+                    "operationType": "not_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212311745-2301010555--32544",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:45:00",
+                      "arrival": "2023-01-01T05:55:00",
+                      "durationInMinutes": 430,
+                      "flightNumber": "7806",
+                      "marketingCarrier": {
+                        "id": -32544,
+                        "name": "Austrian Airlines",
+                        "alternateId": "OS",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31722,
+                        "name": "United",
+                        "alternateId": "UA",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.93999,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311745--32544-0-13554-2301010555?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212311745--32090-0-13554-2301010555",
+              "price": {
+                "raw": 578,
+                "formatted": "578 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311745--32090-0-13554-2301010555",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 430,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T17:45:00",
+                  "arrival": "2023-01-01T05:55:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -32090,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/LH.png",
+                        "name": "Lufthansa"
+                      }
+                    ],
+                    "operating": [
+                      {
+                        "id": -31722,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/UA.png",
+                        "name": "United"
+                      }
+                    ],
+                    "operationType": "not_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212311745-2301010555--32090",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:45:00",
+                      "arrival": "2023-01-01T05:55:00",
+                      "durationInMinutes": 430,
+                      "flightNumber": "9259",
+                      "marketingCarrier": {
+                        "id": -32090,
+                        "name": "Lufthansa",
+                        "alternateId": "LH",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31722,
+                        "name": "United",
+                        "alternateId": "UA",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.9022,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311745--32090-0-13554-2301010555?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            },
+            {
+              "id": "12387-2212311745--31722-0-13554-2301010555",
+              "price": {
+                "raw": 582,
+                "formatted": "582 €"
+              },
+              "legs": [
+                {
+                  "id": "12387-2212311745--31722-0-13554-2301010555",
+                  "origin": {
+                    "id": "IAD",
+                    "name": "Washington Dulles",
+                    "displayCode": "IAD",
+                    "city": "Washington",
+                    "isHighlighted": false
+                  },
+                  "destination": {
+                    "id": "LHR",
+                    "name": "London Heathrow",
+                    "displayCode": "LHR",
+                    "city": "London",
+                    "isHighlighted": false
+                  },
+                  "durationInMinutes": 430,
+                  "stopCount": 0,
+                  "isSmallestStops": true,
+                  "departure": "2022-12-31T17:45:00",
+                  "arrival": "2023-01-01T05:55:00",
+                  "timeDeltaInDays": 1,
+                  "carriers": {
+                    "marketing": [
+                      {
+                        "id": -31722,
+                        "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/UA.png",
+                        "name": "United"
+                      }
+                    ],
+                    "operationType": "fully_operated"
+                  },
+                  "segments": [
+                    {
+                      "id": "12387-13554-2212311745-2301010555--31722",
+                      "origin": {
+                        "flightPlaceId": "IAD",
+                        "parent": {
+                          "flightPlaceId": "WASA",
+                          "name": "Washington",
+                          "type": "City"
+                        },
+                        "name": "Washington Dulles",
+                        "type": "Airport"
+                      },
+                      "destination": {
+                        "flightPlaceId": "LHR",
+                        "parent": {
+                          "flightPlaceId": "LOND",
+                          "name": "London",
+                          "type": "City"
+                        },
+                        "name": "London Heathrow",
+                        "type": "Airport"
+                      },
+                      "departure": "2022-12-31T17:45:00",
+                      "arrival": "2023-01-01T05:55:00",
+                      "durationInMinutes": 430,
+                      "flightNumber": "918",
+                      "marketingCarrier": {
+                        "id": -31722,
+                        "name": "United",
+                        "alternateId": "UA",
+                        "allianceId": -31999
+                      },
+                      "operatingCarrier": {
+                        "id": -31722,
+                        "name": "United",
+                        "alternateId": "UA",
+                        "allianceId": -31999
+                      }
+                    }
+                  ]
+                }
+              ],
+              "isSelfTransfer": false,
+              "isMashUp": false,
+              "hasFlexibleOptions": false,
+              "score": 4.8684,
+              "deeplink": "https://www.skyscanner.net/transport/flights/iad/lhr/221231/config/12387-2212311745--31722-0-13554-2301010555?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&destinationentityid=27544008&originentityid=27538424&inboundaltsenabled=false&infants=0&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0"
+            }
+          ]
+        }
+      ]
+    },
+    "context": {
+      "status": "incomplete",
+      "sessionId": "1d5f3977-29fb-4efd-919f-f7502b562d41",
+      "totalResults": 10
+    }
+  }
+  
