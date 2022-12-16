@@ -19,6 +19,26 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${userName}:${password}@cluster0.ytqxemr.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+async function insertFlight(client, databaseAndCollection, newFlight) {
+
+
+    const result = await client.db(databaseAndCollection.db).collection(databaseAndCollection.collection).insertOne(newFlight);
+
+
+}
+
+async function lookupByEmail(client, databaseAndCollection, clientEmail) {
+    let filter = {email: clientEmail};
+    const result = await client.db(databaseAndCollection.db)
+                        .collection(databaseAndCollection.collection)
+                        .find(filter);
+
+   if (result) {
+       return result;
+   } else {
+       console.log(`No applicant found with email ${appEmail}`);
+   }
+}
 
 let currentFlightsList = new Object();
 function makeTable(response) {
@@ -179,6 +199,7 @@ app.post('/findFlights', (req, resp) => {
 	getAPIInformation();
 });
 
+
 app.post('/displayFlights', (req, resp) => {
 	let currentDate = new Date();
 	const { bookmarkedFlights } = req.body;
@@ -186,17 +207,173 @@ app.post('/displayFlights', (req, resp) => {
 	resp.render("displayNewBookmarkedFlights.ejs", {currentDate, displayFlightsTable})
 })
 
+/* app.get('/displayFlights'), (req, resp) => {
+
+	const {flightNum} = req.body;
+
+	// get flight from API
+	async function driver(){
+        try{
+            await client.connect();
+
+
+            await insertFlight(client, databaseAndCollection, variables);
+
+			console.log("Flight Bookmarked!");
+
+			return variables;
+
+
+
+        } catch (e) {
+            console.error(e);
+        } finally {
+            await client.close();
+        }
+    };
+
+    driver().then((res)=> {
+*/
+
+
+		response.render("displayFlights", res);
+
+        // let table = "<style>table, th, td{ border: 1px double black;}</style>"
+
+        // table += "<table><thead><tr><th>Item</th><th>Cost</th></tr></thead><tbody>";
+
+
+        // res.forEach((obj) => { 
+        //     table += "<tr>";
+
+
+        //     table += `<td>${obj.name}</td>`;
+
+        //     table += `<td>${obj.gpa}</td>`;
+
+        //     table += "</tr>";
+
+        // });
+
+
+
+        // table += "</tbody></table>";
+
+
+
+    });
+
+
+
+
+}
 app.get('/getBookmarkedFlights', (req, resp) => {
     resp.render("getBookmarkedFlights");
 });
-app.post('/getBookmarkedFlights', (req, resp) => {
-    const {email} = req.body
-});
+
 
 app.post('/yourBookmarkedFlights', (req, resp) => {
+
     const {email} = req.body
-    resp.render("yourBookmarkedFlights");
+
+	async function driver(){
+        try{
+            await client.connect();
+
+            let found = await lookupByEmail(client, databaseAndCollection, email);
+            return found;
+
+
+        } catch (e) {
+            console.error(e);
+        } finally {
+            await client.close();
+        }
+    };
+
+    driver().then((res)=> {
+
+
+        let table = "<style>table, th, td{ border: 1px double black;}</style>"
+
+        table += "<table><thead><tr><th>Item</th><th>Cost</th></tr></thead><tbody>";
+
+
+		/* Will have to add functionality depending on what flight info we want to display*/
+
+        res.forEach((obj) => { 
+            table += "<tr>";
+
+
+            table += `<td>${obj.name}</td>`;
+
+            table += `<td>${obj.gpa}</td>`;
+
+            table += "</tr>";
+
+        });
+
+
+
+        table += "</tbody></table>";
+
+		const variables = {
+            flightTable: table
+        };
+
+		resp.render("yourBookmarkedFlights", variables);
+
+
+
+    });
+
+
+
+
 });
+
+app.get('/flightsRemove', (req, resp) => {
+
+	resp.render("flightsRemove");
+});
+
+
+app.post('/processFlightsRemove', (req, resp) => {
+
+
+	const {email} = req.body
+
+
+	async function driver(){
+
+		try {
+
+			await client.connect();
+
+            const result = await client.db(databaseAndCollection.db)
+            .collection(databaseAndCollection.collection)
+            .deleteMany( { "email" : email } );
+
+            return result.deletedCount;
+
+
+        } catch (e) {
+            console.error(e);
+        } finally {
+            await client.close();
+        }
+    };
+
+    driver().then((res) => {
+        let variables = {
+            numRemoved: res
+        };
+        response.render("processFlightsRemove", variables);
+    });
+
+});
+
+
 
 app.listen(portNum);
 
