@@ -156,6 +156,27 @@ app.get('/displayFlights'), (req, resp) => {
 
 	const {flightNum} = req.body;
 
+    // Example checkbox with access usage:
+
+    // <input type="checkbox" name="celcius" id="celcius" checked="true" value="true">
+
+    // if (req.body.celcius) {
+    //         console.log("true");
+    // } else {
+    //         console.log("false");
+    // }
+
+    if (req.body.flight1) {
+        
+    } 
+    
+    if (req.body.flight2) {
+    }
+
+    if (req.body.flight3) {
+    }
+
+
 	/*get flight from API
 		*/
 
