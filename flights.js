@@ -48,16 +48,21 @@ function makeTable(response) {
 	tableHTML = "<table border='1'>";
 	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Departure Date</th><th>Arrival Date</th></tr>";
 
+	console.log("response: ");
+	console.log(response);
 	if (response){
 		bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
 		
 		let idx = 0;
+
+		console.log("best: ");
+		console.log(bestFlights);
 		bestFlights.forEach(element => {
 			// do fields we'll put in mongo, tbd
 			let idStr = "box" + idx;
 			currentFlightsList[idStr] = {id: element.id, price: element.price.formatted, origin: element.legs[0].origin.id, destination: element.legs[0].destination.id, date: element.legs[0].departure};
 			tableHTML += "<tr>";
-			tableHTML += `<td><input type="checkbox" id="flight${idx}" value="${id}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
+			tableHTML += `<td><input type="checkbox" id="${idStr}" value="${idx}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
 			tableHTML += `<td>${element.price.formatted}</td>`;
 			tableHTML += `<td>${element.legs[0].departure}</td>`;
 			tableHTML += `<td>${element.legs[0].arrival}</td>`;
@@ -74,8 +79,9 @@ function makeBookmarksTable(bookmarkedFlights) {
 	tableHTML = "<table border='1'>";
 	tableHTML += "<tr><th>Price</th><th>Origin</th><th>Destination</th><th>Date</th></tr>";
 
+	console.log(bookmarkedFlights);
 	if(bookmarkedFlights){
-		if (len(bookmarkedFlights) == 1) {
+		if (bookmarkedFlights.length == 1) {
 			let flight = currentFlightsList["box0"];
 			tableHTML += "<tr>";
 			tableHTML += `<td>${flight.price}</td>`;
@@ -86,6 +92,9 @@ function makeBookmarksTable(bookmarkedFlights) {
 		} else {
 			bookmarkedFlights.forEach(idx => {
 				let idStr = "box" + idx;
+				console.log(idStr);
+
+				console.log(currentFlightsList);
 				let flight = currentFlightsList[idStr];
 				tableHTML += "<tr>";
 				tableHTML += `<td>${flight.price}</td>`;
@@ -188,10 +197,10 @@ app.post('/displayFlights', (req, resp) => {
 	}
 	function makeAPICall() {
 		apiCallCount++;
-		fetch(url, options)
-		.then(res => res.json())
-		.then(json => { apiJSON = json })
-		.catch(err => console.error('error:' + err));
+		// fetch(url, options)
+		// .then(res => res.json())
+		// .then(json => { apiJSON = json })
+		// .catch(err => console.error('error:' + err));
 
 
 		/* COMMENT THIS OUT */
@@ -229,38 +238,36 @@ app.post('/displayNewBookmarkedFlights', (req, resp) => {
 
 	const {name, email, origin, destination, month, day, year, numTickets} = req.body;
 
+	flights = [];
+
+	let bookedFlights = req.body.bookmarkedFlights;
+
+	console.log(bookedFlights);
+
+	bookedFlights.forEach((id) => {
+
+		let idx = "box"+id.toString();
+		flights.push(currentFlightsList[idx]);
+
+	});
 
 
-	let ids = []
 
-	if (req.body.flight0){
-		console.log("here");
-		console.log(req.body.flight0.value);
-	}
-
-	let checked = req.body;
-
-	// console.log(checked);
-	
-   	// checked.forEach(function (item) {
-    //    ids.push(item.id);
-   	// });
 
 
 	let currentDate = new Date();
 
-	let bookTable = makeBookmarksTable(array);
+	let bookTable = makeBookmarksTable(bookedFlights);
 
 	async function driver(){
         try{
             await client.connect();
 	
-
 		
-		
-			ids.forEach(async (flightID) => {
+			flights.forEach(async (flight) => {
 
-				let flight = Object.keys(apiJSON.itineraries.buckets.items).find(flight => apiJSON.itineraries.buckets.items.id === flightID);
+				console.log("flight:");
+				console.log(flight);
 				await insertFlight(client, databaseAndCollection, flight);
 			});
 
