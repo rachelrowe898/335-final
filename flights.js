@@ -24,7 +24,7 @@ let currentFlightsList = new Object();
 function makeTable(response) {
 	bestFlights = response.itineraries.buckets[0].items; // get "best", first bucket
 	tableHTML = "<table border='1'>";
-	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th></tr>";
+	tableHTML += "<tr><th>Select to Bookmark</th><th>Price of Flight</th><th>Date</th></tr>";
 	let idx = 0;
 	bestFlights.forEach(element => {
 		// do fields we'll put in mongo, tbd
@@ -33,6 +33,7 @@ function makeTable(response) {
 		tableHTML += "<tr>";
 		tableHTML += `<td><input type="checkbox" id="${idStr}" value="${idx}" name="bookmarkedFlights"/></td>`; // could change to be flight1, flight2, etc
 		tableHTML += `<td>${element.price.formatted}</td>`;
+		tableHTML += `<td>${element.legs[0].departure}</td>`;
 		tableHTML += "</tr>";
 		idx++;
 	});
@@ -44,16 +45,27 @@ function makeTable(response) {
 function makeBookmarksTable(bookmarkedFlights) {
 	tableHTML = "<table border='1'>";
 	tableHTML += "<tr><th>Price</th><th>Origin</th><th>Destination</th><th>Date</th></tr>";
-	bookmarkedFlights.forEach(idx => {
-		let idStr = "box" + idx;
-		let flight = currentFlightsList[idStr];
+	if (bookmarkedFlights.length == 1) {
+		let flight = currentFlightsList["box0"];
 		tableHTML += "<tr>";
 		tableHTML += `<td>${flight.price}</td>`;
 		tableHTML += `<td>${flight.origin}</td>`;
 		tableHTML += `<td>${flight.destination}</td>`;
 		tableHTML += `<td>${flight.date}</td>`;
 		tableHTML += "</tr>";
-	});
+	} else {
+		bookmarkedFlights.forEach(idx => {
+			let idStr = "box" + idx;
+			let flight = currentFlightsList[idStr];
+			tableHTML += "<tr>";
+			tableHTML += `<td>${flight.price}</td>`;
+			tableHTML += `<td>${flight.origin}</td>`;
+			tableHTML += `<td>${flight.destination}</td>`;
+			tableHTML += `<td>${flight.date}</td>`;
+			tableHTML += "</tr>";
+		});
+	}
+	
 	tableHTML += "</table>";
 	return tableHTML;
 
